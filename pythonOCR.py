@@ -2,7 +2,7 @@ import pytesseract
 from PIL import Image
 import cv2
 from gtts import gTTS
-# from playsound import playsound
+from playsound import playsound
 
 image_1 = cv2.imread('./Tests/Image 1.png')
 
