@@ -1,20 +1,15 @@
 import pytesseract
 from PIL import Image
 import cv2
+from gtts import gTTS
+# from playsound import playsound
 
-# Open the default camera
-cap = cv2.VideoCapture(0)
+image_1 = cv2.imread('./Tests/Image 1.png')
+# image_2 = cv2.imread('image_2.png')
+# image_3 = cv2.imread('image_3.png')
 
-# Capture a single frame
-ret, frame = cap.read()
+cv2.imshow('Image 1', image_1)
+# cv2.imshow('Image 2', image_2)
+# cv2.imshow('Image 3', image_3)
 
-# Save the frame as an image file
-cv2.imwrite('captured_image.jpg', frame)
-
-# Release the camera
-cap.release()
-
-image = "../testArticles/madhavTestArticle.png"
-img = Image.open(image)
-ocr = pytesseract.image_to_string(img)
-print(ocr)
+cv2.waitKey(0)
