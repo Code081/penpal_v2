@@ -26,6 +26,9 @@ for a in character_box.splitlines():
     x, y, w, h = int(a[1]), int(a[2]), int(a[3]), int(a[4])
     cv2.rectangle(image_1, (x, height-y), (w, height-h), (0, 0, 255), 1)
     
+    # putting text
+    cv2.putText(image_1, a[0], (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (50, 50, 255), 2)
+    
 cv2.imshow('Image 1', image_1)
 
 cv2.waitKey(0)
