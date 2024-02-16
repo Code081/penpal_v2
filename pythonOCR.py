@@ -2,9 +2,30 @@ import pytesseract
 from PIL import Image
 import cv2
 from gtts import gTTS
-from playsound import playsound
+# from playsound import playsound
 
-image_1 = cv2.imread('./Tests/Image 1.png')
+
+cap = cv2.VideoCapture(0)
+
+
+if not cap.isOpened():
+        print("Error opening video stream")
+
+# Read until video is completed
+while(cap.isOpened()):
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+    if ret == True:
+        cv2.imwrite('LiveCam.jpg', frame)
+        break
+
+
+cap.release()
+
+
+cv2.destroyAllWindows()
+
+image_1 = cv2.imread('LiveCam.jpg')
 
 height, width, _ = image_1.shape
 
@@ -21,6 +42,10 @@ print(pytesseract.image_to_string(image_1))
 character_box = pytesseract.image_to_boxes(image_1)
 
 data = pytesseract.image_to_data(image_1, output_type=pytesseract.Output.DICT)
+
+with open('ocr_data.txt', 'w') as f:
+    for key, value in data.items():
+        f.write(f'{key}: {value}\n')
 
 for a in character_box.splitlines():
     a = a.split(' ')
