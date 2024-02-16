@@ -20,6 +20,8 @@ print(pytesseract.image_to_string(image_1))
 
 character_box = pytesseract.image_to_boxes(image_1)
 
+data = pytesseract.image_to_data(image_1, output_type=pytesseract.Output.DICT)
+
 for a in character_box.splitlines():
     a = a.split(' ')
     print(a)
